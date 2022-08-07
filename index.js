@@ -1,5 +1,5 @@
 //import mongo tools/library
-const { MongoClient, ServerApiVersion,  } = require('mongodb');
+const { MongoClient, ServerApiVersion } = require("mongodb");
 
 //connect to Mongo/Atlas using a URL connection string
 
@@ -7,14 +7,17 @@ const { MongoClient, ServerApiVersion,  } = require('mongodb');
 // ->./ means here/current directory
 // ->../ means one directory up
 // ->../../ means two directories up
-const {uri} = require('./dbsecrets.js')
-
+const { uri } = require("./dbsecrets.js");
 
 //Create  client at uri
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true,serverApi: ServerApiVersion.v1});
+const client = new MongoClient(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverApi: ServerApiVersion.v1,
+});
 
 //Connect to sample_mflix database
-const db = client.db('sample_mflix');
+const db = client.db("sample_mflix");
 
 //Query
 
@@ -24,14 +27,16 @@ const db = client.db('sample_mflix');
 
 //will work with callbacks, promises, or async await
 //Takes an object for the query parameter
-db.collection('movies').findOne({title: "Back to the Future"}, (err, results) => {
+db.collection("movies").findOne(
+  { title: "Back to the Future" },
+  (err, results) => {
     //log errors if any errors
-    if(err) {
-        console.error(err);
+    if (err) {
+      console.error(err);
     }
     //output results
     console.log(results);
     //Close connection to Atlas
     client.close();
-});
-
+  }
+);
